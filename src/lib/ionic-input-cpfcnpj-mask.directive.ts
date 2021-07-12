@@ -23,8 +23,12 @@ export class IonicInputCpfcnpjMaskDirective {
    * @param event
    */
   onInputChange(event: any) {
-    let value = event.target.value,
-      pattern = value.length <= 14 ? '***.***.***-**' : '**.***.***/****-**';
+    let value = event.target.value;
+    let pattern = value.length <= 14 ? '***.***.***-**' : '**.***.***/****-**';
+    if (value.length === 15) {
+      value = value.replace('.', '').replace('-', '');
+      value = value.substr(0, 2) + '.' + value.substr(2, 3) + '.' + value.substr(6, 3) + '/' + value.substr(9, 3);
+    }
     if (event.keyIdentifier === 'U+0008' || event.keyCode === 8 || event.key === 'Backspace') {
       if (value.length) { //prevent fatal exception when backspacing empty value in progressive web app
         //remove all trailing formatting then delete character

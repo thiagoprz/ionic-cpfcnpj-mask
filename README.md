@@ -9,13 +9,13 @@ CNPJ is the National Registry of Legal Entities in Brazil.
 
 Import module on my-component.module.ts
 ```
-import {IonicCurrencyMaskModule} from "@thiagoprz/ionic-currency-mask";
+import {IonicCurrencyMaskModule} from "@thiagoprz/ionic-cpfcnpj-mask";
 
 @NgModule({
     ...
     imports: [
         ...,
-        IonicCurrencyMaskModule
+        IonicCpfCnpjMaskModule
     ],
     ...
 })
