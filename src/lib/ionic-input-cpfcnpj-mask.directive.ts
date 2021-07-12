@@ -25,9 +25,15 @@ export class IonicInputCpfcnpjMaskDirective {
   onInputChange(event: any) {
     let value = event.target.value;
     let pattern = value.length <= 14 ? '***.***.***-**' : '**.***.***/****-**';
-    if (value.length === 15) {
-      value = value.replace('.', '').replace('-', '');
-      value = value.substr(0, 2) + '.' + value.substr(2, 3) + '.' + value.substr(6, 3) + '/' + value.substr(9, 3);
+    if (value.length === 15 && value.indexOf('/') === -1) {
+      // value = value.replace('.', '').replace('-', '');
+      // const unformvalue = value.replace(/\./g, '').replace(/\-/g, '');
+      // value = unformvalue.substr(0, 2) + '.' + unformvalue.substr(2, 3) + '.' + unformvalue.substr(6, 3) + '/' + unformvalue.substr(9, 5);
+      // console.log(value);
+      const unformvalue = value.replace(/\./g, '').replace(/\-/g, '');
+      value = unformvalue.substr(0, 2) + '.' + unformvalue.substr(2, 3) + '.' + unformvalue.substr(5, 3) + '/' + unformvalue.substr(8, 4);
+      // 018.455.520-59
+      // 01.845.552/059X-XX
     }
     if (event.keyIdentifier === 'U+0008' || event.keyCode === 8 || event.key === 'Backspace') {
       if (value.length) { //prevent fatal exception when backspacing empty value in progressive web app
